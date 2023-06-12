@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4edrebjub4cb"]
+
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_6dkva"]
+[ext_resource type="PackedScene" uid="uid://c567nn4qr6ttl" path="res://imported_models/demon.glb" id="1_rowid"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1x76m"]
+radius = 0.75
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_6dkva")
+
+[node name="demon" parent="." instance=ExtResource("1_rowid")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1x76m")

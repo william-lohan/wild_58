@@ -1,0 +1,15 @@
+{
+    "csharp.format.enable": true,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "godot_tools.reconnect_automatically": false,
+    "godot_tools.reconnect_attempts": 0,
+    "omnisharp.enableEditorConfigSupport": true,
+    "omnisharp.enableImportCompletion": true,
+    "omnisharp.enableMsBuildLoadProjectsOnDemand": false,
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.maxFindSymbolsItems": 3000,
+    "omnisharp.organizeImportsOnFormat": true,
+    "omnisharp.useModernNet": true,
+}

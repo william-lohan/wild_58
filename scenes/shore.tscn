@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://spkcbdx5cua"]
+
+[ext_resource type="PackedScene" uid="uid://c4edrebjub4cb" path="res://prefabs/player_prefab.tscn" id="1_m2whs"]
+[ext_resource type="Script" path="res://scripts/Camera.cs" id="2_08mf7"]
+
+[node name="World" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(100, 1, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 0)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.5, 0)
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.5, 0)
+use_collision = true
+
+[node name="Player" parent="." instance=ExtResource("1_m2whs")]
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 10)
+fov = 45.0
+script = ExtResource("2_08mf7")
+follow = NodePath("../Player")
+margin = 2.0
