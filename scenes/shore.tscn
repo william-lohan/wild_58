@@ -1,12 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://spkcbdx5cua"]
+[gd_scene load_steps=7 format=3 uid="uid://spkcbdx5cua"]
 
 [ext_resource type="PackedScene" uid="uid://c4edrebjub4cb" path="res://prefabs/player_prefab.tscn" id="1_m2whs"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="2_08mf7"]
+[ext_resource type="PackedScene" uid="uid://b21ai1qrgqj6w" path="res://imported_models/shore.glb" id="3_srnqf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e3qk7"]
+sky_top_color = Color(0.219608, 0.690196, 0.870588, 1)
+sky_horizon_color = Color(0.454902, 0.784314, 0.909804, 1)
+ground_bottom_color = Color(0.215686, 0.517647, 0.662745, 1)
+ground_horizon_color = Color(0.215686, 0.517647, 0.662745, 1)
+
+[sub_resource type="Sky" id="Sky_wl20g"]
+sky_material = SubResource("ProceduralSkyMaterial_e3qk7")
+
+[sub_resource type="Environment" id="Environment_ms5an"]
+background_mode = 2
+sky = SubResource("Sky_wl20g")
+ambient_light_source = 3
 
 [node name="World" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ms5an")
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, -0.5, 0)
 use_collision = true
 size = Vector3(100, 1, 1)
 
@@ -30,3 +48,9 @@ fov = 45.0
 script = ExtResource("2_08mf7")
 follow = NodePath("../Player")
 margin = 2.0
+
+[node name="shore" parent="." instance=ExtResource("3_srnqf")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.917025, 1.36647e-08, 0.398829, -0.220488, 0.833288, 0.506967, -0.33234, -0.552839, 0.764146, 0, 0, 0)
+directional_shadow_mode = 0

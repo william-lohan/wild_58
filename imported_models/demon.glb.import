@@ -27,7 +27,7 @@ animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
-import_script/path="res://scripts/CustomShaderImporter.cs"
+import_script/path=""
 _subresources={
 "animations": {
 "IdleAction": {
@@ -5426,6 +5426,12 @@ _subresources={
 "slice_99/save_to_file/path": "",
 "slice_99/start_frame": 0,
 "slices/amount": null
+}
+},
+"materials": {
+"DemonMaterial": {
+"use_external/enabled": false,
+"use_external/path": "res://imported_models/materials/DemonMaterial.tres"
 }
 },
 "meshes": {

@@ -1,0 +1,24 @@
+[gd_resource type="AnimatedTexture" load_steps=5 format=3 uid="uid://b55q5r5sxmtly"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_112gp"]
+load_path = "res://.godot/imported/shore_short_texture.png-37d4aa1cf93cb290192f397f47718f64.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pdyen"]
+load_path = "res://.godot/imported/shore_original_texture.png-4171592a5b049bb52d496f9b1a0b9496.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gcmhf"]
+load_path = "res://.godot/imported/shore_long_texture.png-8dcaa73096ebc06e46db74e2d681f584.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l7pty"]
+load_path = "res://.godot/imported/shore_original_texture.png-4171592a5b049bb52d496f9b1a0b9496.s3tc.ctex"
+
+[resource]
+frames = 4
+speed_scale = 2.0
+frame_0/texture = SubResource("CompressedTexture2D_112gp")
+frame_1/texture = SubResource("CompressedTexture2D_pdyen")
+frame_1/duration = 1.0
+frame_2/texture = SubResource("CompressedTexture2D_gcmhf")
+frame_2/duration = 1.0
+frame_3/texture = SubResource("CompressedTexture2D_l7pty")
+frame_3/duration = 1.0
