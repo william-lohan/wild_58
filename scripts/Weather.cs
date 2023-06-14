@@ -17,10 +17,12 @@ public partial class Weather : Node3D
     [Export]
     private GpuParticles3D rainParticles;
 
-    [Export]
     private bool isRaining = false;
 
     private ProceduralSkyMaterial skyMaterial;
+
+    [Signal]
+    public delegate void WeatherChangedEventHandler(bool isRaining);
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -44,4 +46,16 @@ public partial class Weather : Node3D
             skyMaterial.SkyTopColor = skyMaterial.SkyTopColor.Lerp(CLEAR_SKY, (float)delta);
         }
 	}
+
+    public void MakeRain()
+    {
+        isRaining = true;
+        EmitSignal(SignalName.WeatherChanged, isRaining);
+    }
+
+    public void MakeShine()
+    {
+        isRaining = false;
+        EmitSignal(SignalName.WeatherChanged, isRaining);
+    }
 }

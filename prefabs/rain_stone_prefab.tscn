@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dclc0r4ovxe3g"]
+
+[ext_resource type="Script" path="res://scripts/RainStone.cs" id="1_ln5i2"]
+[ext_resource type="PackedScene" uid="uid://dn5d04wct4y7h" path="res://imported_models/rain_stone.glb" id="2_325pv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7l4a4"]
+
+[node name="RainStone" type="Area3D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ln5i2")
+
+[node name="rain_stone" parent="." instance=ExtResource("2_325pv")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7l4a4")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

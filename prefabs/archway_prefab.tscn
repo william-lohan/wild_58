@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccmlkgkd1lxtc"]
+
+[ext_resource type="Script" path="res://scripts/Archway.cs" id="1_iuqsx"]
+[ext_resource type="PackedScene" uid="uid://n15eregsrvbd" path="res://imported_models/archway.glb" id="2_jbwqp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxlld"]
+size = Vector3(4, 0.4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m4lca"]
+size = Vector3(0.5, 2, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1x5xr"]
+size = Vector2(0.75, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1tcw"]
+albedo_color = Color(0.831373, 0.945098, 0.976471, 1)
+
+[sub_resource type="Animation" id="Animation_d2r2j"]
+resource_name = "RESET"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1.125, 2.125, 1.1)
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707, 0, 0, 0.707)
+
+[sub_resource type="Animation" id="Animation_k443f"]
+resource_name = "WaterFall"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1.125, 2.125, 1.1, 1, 1, 1.125, 1, 1.1)
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707, 0, 0, 0.707)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_48a74"]
+_data = {
+"RESET": SubResource("Animation_d2r2j"),
+"WaterFall": SubResource("Animation_k443f")
+}
+
+[node name="Archway" type="Node3D"]
+script = ExtResource("1_iuqsx")
+
+[node name="archway" parent="." instance=ExtResource("2_jbwqp")]
+
+[node name="Roof" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Roof"]
+shape = SubResource("BoxShape3D_oxlld")
+
+[node name="Door" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door"]
+shape = SubResource("BoxShape3D_m4lca")
+
+[node name="Water" type="CSGMesh3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 1.125, 2.125, 1.1)
+mesh = SubResource("PlaneMesh_1x5xr")
+material = SubResource("StandardMaterial3D_m1tcw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Water"]
+libraries = {
+"": SubResource("AnimationLibrary_48a74")
+}

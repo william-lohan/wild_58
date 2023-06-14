@@ -8,6 +8,12 @@ public partial class Player : CharacterBody3D
     [Export]
     private float JumpVelocity = 4.5f;
 
+    private int shineCount = 0;
+
+    public int Score {
+        get { return shineCount; }
+    }
+
     // Get the gravity from the project settings to be synced with RigidBody nodes.
     public float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 
@@ -65,5 +71,15 @@ public partial class Player : CharacterBody3D
 
         Velocity = velocity;
         MoveAndSlide();
+    }
+
+    public void AddShine()
+    {
+        shineCount++;
+    }
+
+    internal void EndLevel()
+    {
+        ProcessMode = ProcessModeEnum.Disabled;
     }
 }

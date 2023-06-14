@@ -1,9 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://spkcbdx5cua"]
+[gd_scene load_steps=19 format=3 uid="uid://spkcbdx5cua"]
 
 [ext_resource type="PackedScene" uid="uid://c4edrebjub4cb" path="res://prefabs/player_prefab.tscn" id="1_m2whs"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="2_08mf7"]
 [ext_resource type="PackedScene" uid="uid://b21ai1qrgqj6w" path="res://imported_models/shore.glb" id="3_srnqf"]
 [ext_resource type="Script" path="res://scripts/Weather.cs" id="4_hdnsh"]
+[ext_resource type="PackedScene" uid="uid://dclc0r4ovxe3g" path="res://prefabs/rain_stone_prefab.tscn" id="5_03125"]
+[ext_resource type="PackedScene" uid="uid://ccmlkgkd1lxtc" path="res://prefabs/archway_prefab.tscn" id="6_46lvk"]
+[ext_resource type="PackedScene" uid="uid://dw615ypg3apjc" path="res://prefabs/shine_prefab.tscn" id="7_r5uf5"]
+[ext_resource type="Texture2D" uid="uid://wbw5omd58he7" path="res://imported_models/archway_stone_texture.png" id="8_087i1"]
+[ext_resource type="PackedScene" uid="uid://cw5w4u2cau7fu" path="res://prefabs/shrine_prefab.tscn" id="9_xapxj"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ffbkq"]
 emission_shape = 3
@@ -32,31 +37,38 @@ background_mode = 2
 sky = SubResource("Sky_wl20g")
 ambient_light_source = 3
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mftj5"]
+albedo_texture = ExtResource("8_087i1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csg76"]
+albedo_texture = ExtResource("8_087i1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjxti"]
+albedo_texture = ExtResource("8_087i1")
+
 [node name="World" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, -0.5, 0)
+visible = false
 use_collision = true
+collision_mask = 2
 size = Vector3(100, 1, 1)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 0)
+[node name="Bounds" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, 0)
+visible = false
 use_collision = true
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.5, 0)
-use_collision = true
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.5, 0)
-use_collision = true
+collision_mask = 2
+size = Vector3(1, 4, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_m2whs")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 10)
 fov = 45.0
 script = ExtResource("2_08mf7")
+follow = NodePath("../Player")
 margin = 2.0
 
 [node name="Rain" type="GPUParticles3D" parent="Camera3D"]
@@ -71,8 +83,11 @@ draw_pass_1 = SubResource("PlaneMesh_7g1qc")
 
 [node name="shore" parent="." instance=ExtResource("3_srnqf")]
 
-[node name="Weather" type="Node3D" parent="."]
+[node name="Weather" type="Node3D" parent="." node_paths=PackedStringArray("worldEnvironment", "sunLight", "rainParticles")]
 script = ExtResource("4_hdnsh")
+worldEnvironment = NodePath("WorldEnvironment")
+sunLight = NodePath("Sun")
+rainParticles = NodePath("../Camera3D/Rain")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Weather"]
 environment = SubResource("Environment_ms5an")
@@ -80,3 +95,65 @@ environment = SubResource("Environment_ms5an")
 [node name="Sun" type="DirectionalLight3D" parent="Weather"]
 transform = Transform3D(0.917025, -4.50936e-07, 0.398829, -0.220488, 0.833288, 0.506967, -0.33234, -0.552839, 0.764146, 0, 0, 0)
 directional_shadow_mode = 0
+
+[node name="RainStone" parent="." instance=ExtResource("5_03125")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 3, 0)
+
+[node name="Archway" parent="." instance=ExtResource("6_46lvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+
+[node name="Shines" type="Node3D" parent="."]
+
+[node name="Shine" parent="Shines" instance=ExtResource("7_r5uf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3, 0)
+
+[node name="Shine2" parent="Shines" instance=ExtResource("7_r5uf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 3, 0)
+
+[node name="Shine3" parent="Shines" instance=ExtResource("7_r5uf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 4, 0)
+
+[node name="Shine4" parent="Shines" instance=ExtResource("7_r5uf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 4, 0)
+
+[node name="Shine5" parent="Shines" instance=ExtResource("7_r5uf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, 0)
+
+[node name="Shine6" parent="Shines" instance=ExtResource("7_r5uf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 1, 0)
+
+[node name="Shine7" parent="Shines" instance=ExtResource("7_r5uf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 1, 0)
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="Block" type="CSGBox3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_mftj5")
+use_collision = true
+collision_mask = 2
+
+[node name="Block2" type="CSGBox3D" parent="Blocks"]
+transform = Transform3D(1, 0.000558505, 0, -0.000558505, 1, 0, 0, 0, 1, 20, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_csg76")
+use_collision = true
+collision_mask = 2
+
+[node name="Block3" type="CSGBox3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_fjxti")
+use_collision = true
+collision_mask = 2
+
+[node name="Shrine" parent="." instance=ExtResource("9_xapxj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, -0.5, 0)
+
+[connection signal="WeatherChanged" from="Weather" to="Archway" method="OnWeatherChanged"]
+[connection signal="BlockBroken" from="RainStone" to="Weather" method="MakeRain"]
+[connection signal="ShineHit" from="Shines/Shine" to="Weather" method="MakeShine"]
+[connection signal="ShineHit" from="Shines/Shine2" to="Weather" method="MakeShine"]
+[connection signal="ShineHit" from="Shines/Shine3" to="Weather" method="MakeShine"]
+[connection signal="ShineHit" from="Shines/Shine4" to="Weather" method="MakeShine"]
+[connection signal="ShineHit" from="Shines/Shine5" to="Weather" method="MakeShine"]
+[connection signal="ShineHit" from="Shines/Shine6" to="Weather" method="MakeShine"]
+[connection signal="ShineHit" from="Shines/Shine7" to="Weather" method="MakeShine"]

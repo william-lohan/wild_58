@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw615ypg3apjc"]
+
+[ext_resource type="PackedScene" uid="uid://dw1g3rpsrg202" path="res://imported_models/shine.glb" id="1_5po2h"]
+[ext_resource type="Script" path="res://scripts/Shine.cs" id="1_eq4vh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_n8rdp"]
+radius = 0.6
+
+[node name="Shine" type="Area3D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_eq4vh")
+
+[node name="shine" parent="." instance=ExtResource("1_5po2h")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_n8rdp")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

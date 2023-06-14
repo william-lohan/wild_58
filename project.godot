@@ -41,6 +41,14 @@ Jump={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="World"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Stones"
+3d_physics/layer_4="Shines"
+3d_physics/layer_5="Shrine"
+
 [rendering]
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
