@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 boot_splash/image="res://textures/Wildling_head_only.png"
 config/icon="res://icon.svg"
 
+[autoload]
+
+SoundTrack="*res://prefabs/sound_track.tscn"
+
 [dotnet]
 
 project/assembly_name="Chupacabra Island"

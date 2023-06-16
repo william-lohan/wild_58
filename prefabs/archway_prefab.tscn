@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccmlkgkd1lxtc"]
+[gd_scene load_steps=11 format=3 uid="uid://ccmlkgkd1lxtc"]
 
 [ext_resource type="Script" path="res://scripts/Archway.cs" id="1_iuqsx"]
 [ext_resource type="PackedScene" uid="uid://n15eregsrvbd" path="res://imported_models/archway.glb" id="2_jbwqp"]
+[ext_resource type="AudioStream" uid="uid://dvisyqymo16ku" path="res://sound/338286__werra__slow-creaky-piano-pedal-press.wav" id="3_2bsmo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxlld"]
 size = Vector3(4, 0.4, 2)
@@ -97,3 +98,6 @@ material = SubResource("StandardMaterial3D_m1tcw")
 libraries = {
 "": SubResource("AnimationLibrary_48a74")
 }
+
+[node name="OpenSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_2bsmo")

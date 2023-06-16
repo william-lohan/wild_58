@@ -35,7 +35,7 @@ public partial class Shrine : Area3D
                 shineInstance.GlobalPosition = startPos;
             }
             shineInstance.GlobalPosition = shineInstance.GlobalPosition.Lerp(endPos, (float)delta * speed);
-            if (shineInstance.GlobalPosition.DistanceTo(endPos) < 0.1)
+            if (shineInstance.GlobalPosition.DistanceTo(endPos) < 0.2)
             {
                 shineInstance.GlobalPosition = startPos;
                 count--;

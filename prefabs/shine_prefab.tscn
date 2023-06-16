@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw615ypg3apjc"]
+[gd_scene load_steps=5 format=3 uid="uid://dw615ypg3apjc"]
 
 [ext_resource type="PackedScene" uid="uid://dw1g3rpsrg202" path="res://imported_models/shine.glb" id="1_5po2h"]
 [ext_resource type="Script" path="res://scripts/Shine.cs" id="1_eq4vh"]
+[ext_resource type="AudioStream" uid="uid://bieguq3kf8emc" path="res://sound/350359__newagesoup__wink-01.wav" id="3_iy1n2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n8rdp"]
 radius = 0.6
@@ -15,5 +16,9 @@ script = ExtResource("1_eq4vh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_n8rdp")
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_iy1n2")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

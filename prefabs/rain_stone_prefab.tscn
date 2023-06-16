@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dclc0r4ovxe3g"]
+[gd_scene load_steps=5 format=3 uid="uid://dclc0r4ovxe3g"]
 
 [ext_resource type="Script" path="res://scripts/RainStone.cs" id="1_ln5i2"]
 [ext_resource type="PackedScene" uid="uid://dn5d04wct4y7h" path="res://imported_models/rain_stone.glb" id="2_325pv"]
+[ext_resource type="AudioStream" uid="uid://bly3asik65uhd" path="res://sound/554367__nox_sound__foley_impact_smash_tiles_stereo.wav" id="3_xlr5h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7l4a4"]
 
@@ -14,5 +15,9 @@ script = ExtResource("1_ln5i2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_7l4a4")
+
+[node name="BreakSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_xlr5h")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

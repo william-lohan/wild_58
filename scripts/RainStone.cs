@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class RainStone : Area3D
 {
@@ -10,6 +11,8 @@ public partial class RainStone : Area3D
 
     private Node3D brokenStone;
 
+    private AudioStreamPlayer3D BreakSFX;
+
     [Signal]
     public delegate void BlockBrokenEventHandler();
 
@@ -18,6 +21,7 @@ public partial class RainStone : Area3D
 	{
         originalStone = GetNode<Node3D>("rain_stone");
         brokenScene = GD.Load<PackedScene>("res://imported_models/broke_rain_stone.glb");
+        BreakSFX = GetNode<AudioStreamPlayer3D>("BreakSFX");
 
         // BodyEntered += OnBodyEntered; // wired in GUI
 	}
@@ -26,6 +30,21 @@ public partial class RainStone : Area3D
     {
         AnimationPlayer animationPlayer = brokenStone.GetNode<AnimationPlayer>("AnimationPlayer");
         animationPlayer.Play("KeyAction");
+    }
+
+    private float[] GetRandomSoundClip()
+    {
+        List<float[]> clips = new List<float[]>
+        {
+            new float[] { 0.0f, 0.81f },
+            new float[] { 1.58f, 2.29f },
+            new float[] { 2.98f, 3.92f },
+            new float[] { 4.53f, 5.42f },
+            new float[] { 6.26f, 7.42f },
+            new float[] { 8.14f, 8.84f },
+        };
+
+        return clips[new Random().Next(0, clips.Count)];
     }
 
 
@@ -47,11 +66,15 @@ public partial class RainStone : Area3D
             // stop colliding
             SetCollisionMaskValue(2, false);
 
+            // play sfx
+            float[] clip = GetRandomSoundClip();
+            BreakSFX.PlayFromTo(clip[0], clip[1]);
+
             EmitSignal(SignalName.BlockBroken);
         }
     }
 
-    private void resetStone()
+    private void ResetStone()
     {
         originalStone.Visible = true;
         brokenStone.Visible = false;

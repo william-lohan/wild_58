@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dsluln7qhfxsk"
+path="res://.godot/imported/BenJamin Banger - Jungle.mp3-a3cf5e94b47ecca2e5ac75ed4d791d1d.mp3str"
+
+[deps]
+
+source_file="res://sound/BenJamin Banger - Jungle.mp3"
+dest_files=["res://.godot/imported/BenJamin Banger - Jungle.mp3-a3cf5e94b47ecca2e5ac75ed4d791d1d.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

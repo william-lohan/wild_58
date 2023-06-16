@@ -10,12 +10,15 @@ public partial class Archway : Node3D
 
     private AnimationPlayer archwayAnimation;
 
+    private AudioStreamPlayer3D OpenSFX;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
         door = GetNode<StaticBody3D>("Door");
         waterAnimation = GetNode<AnimationPlayer>("Water/AnimationPlayer");
         archwayAnimation = GetNode<AnimationPlayer>("archway/AnimationPlayer");
+        OpenSFX = GetNode<AudioStreamPlayer3D>("OpenSFX");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,5 +42,6 @@ public partial class Archway : Node3D
             waterAnimation.PlayBackwards("WaterFall");
             archwayAnimation.PlayBackwards("DoorOpen");
         }
+        OpenSFX.Play(0.16f);
     }
 }

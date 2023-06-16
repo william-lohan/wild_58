@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://5owpvj6iudc4"]
+
+[ext_resource type="AudioStream" uid="uid://dsluln7qhfxsk" path="res://sound/BenJamin Banger - Jungle.mp3" id="1_71gdd"]
+
+[node name="SoundTrack" type="AudioStreamPlayer"]
+stream = ExtResource("1_71gdd")
+autoplay = true
+bus = &"Music"
