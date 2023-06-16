@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c4edrebjub4cb" path="res://prefabs/player_prefab.tscn" id="1_4ci61"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="2_pdqm8"]
-[ext_resource type="Script" path="res://scripts/Weather.cs" id="4_sxblb"]
+[ext_resource type="PackedScene" uid="uid://5kg581i8wp04" path="res://prefabs/weather_prefab.tscn" id="3_w2t0s"]
 [ext_resource type="PackedScene" uid="uid://dclc0r4ovxe3g" path="res://prefabs/rain_stone_prefab.tscn" id="5_3wh5c"]
 [ext_resource type="PackedScene" uid="uid://ccmlkgkd1lxtc" path="res://prefabs/archway_prefab.tscn" id="6_hm6ep"]
 [ext_resource type="PackedScene" uid="uid://dw615ypg3apjc" path="res://prefabs/shine_prefab.tscn" id="7_1qta5"]
@@ -85,8 +85,7 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_ffbkq")
 draw_pass_1 = SubResource("PlaneMesh_7g1qc")
 
-[node name="Weather" type="Node3D" parent="." node_paths=PackedStringArray("worldEnvironment", "sunLight", "rainParticles")]
-script = ExtResource("4_sxblb")
+[node name="Weather" parent="." node_paths=PackedStringArray("worldEnvironment", "sunLight", "rainParticles") instance=ExtResource("3_w2t0s")]
 worldEnvironment = NodePath("WorldEnvironment")
 sunLight = NodePath("Sun")
 rainParticles = NodePath("../Camera3D/Rain")
@@ -95,7 +94,7 @@ rainParticles = NodePath("../Camera3D/Rain")
 environment = SubResource("Environment_ms5an")
 
 [node name="Sun" type="DirectionalLight3D" parent="Weather"]
-transform = Transform3D(0.917025, -4.50936e-07, 0.398829, -0.220488, 0.833288, 0.506967, -0.33234, -0.552839, 0.764146, 0, 0, 0)
+transform = Transform3D(0.917025, -5.1926e-07, 0.398829, -0.220488, 0.833288, 0.506967, -0.33234, -0.552839, 0.764146, 0, 0, 0)
 directional_shadow_mode = 0
 
 [node name="RainStone" parent="." instance=ExtResource("5_3wh5c")]
@@ -183,11 +182,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, -0.5, 0)
 [node name="jungle" parent="." instance=ExtResource("9_y26wo")]
 
 [connection signal="WeatherChanged" from="Weather" to="Archway" method="OnWeatherChanged"]
-[connection signal="BlockBroken" from="RainStone" to="Weather" method="MakeRain"]
-[connection signal="ShineHit" from="Shines/Shine" to="Weather" method="MakeShine"]
-[connection signal="ShineHit" from="Shines/Shine2" to="Weather" method="MakeShine"]
-[connection signal="ShineHit" from="Shines/Shine3" to="Weather" method="MakeShine"]
-[connection signal="ShineHit" from="Shines/Shine4" to="Weather" method="MakeShine"]
-[connection signal="ShineHit" from="Shines/Shine5" to="Weather" method="MakeShine"]
-[connection signal="ShineHit" from="Shines/Shine6" to="Weather" method="MakeShine"]
-[connection signal="ShineHit" from="Shines/Shine7" to="Weather" method="MakeShine"]

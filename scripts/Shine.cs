@@ -26,9 +26,22 @@ public partial class Shine : Area3D
         if (body is Player player)
         {
             player.AddShine();
-            SFX.Finished += () => QueueFree(); // remove after sound
-            SFX.Play();
+            var _shine = this;
+            SFX.Finished += () => _shine.QueueFree(); // remove after sound
+            SFX.PlayFromTo(0.06f, 1.18f);
             Visible = false; // hide while sound plays
+
+            // limitation of PlayFromTo won't trigger Finished, so we'll make our own timer
+            var timer = new Timer{
+                OneShot = true,
+                WaitTime = 1.12f,
+            };
+            player.AddChild(timer);
+            timer.Timeout += () => _shine.QueueFree(); // for real this time
+            timer.Start();
+
+            Weather weather = GetTree().GetNodesInGroup("Weather")[0] as Weather;
+            weather.MakeShine();
             EmitSignal(SignalName.ShineHit);
         }
     }

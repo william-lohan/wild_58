@@ -70,6 +70,8 @@ public partial class RainStone : Area3D
             float[] clip = GetRandomSoundClip();
             BreakSFX.PlayFromTo(clip[0], clip[1]);
 
+            Weather weather = GetTree().GetNodesInGroup("Weather")[0] as Weather;
+            weather.MakeRain();
             EmitSignal(SignalName.BlockBroken);
         }
     }

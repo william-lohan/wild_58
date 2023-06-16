@@ -4,7 +4,7 @@ using System;
 public partial class Shrine : Area3D
 {
 
-    const float speed = 2.0f;
+    const float speed = 2.5f;
 
     private PackedScene shineScene;
 
@@ -60,6 +60,7 @@ public partial class Shrine : Area3D
 
     private void EndLevel()
     {
-        // TODO
+        SceneManager sceneManager = GetTree().GetNodesInGroup("SceneManager")[0] as SceneManager;
+        sceneManager.NextScene();
     }
 }

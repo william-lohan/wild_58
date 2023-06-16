@@ -1,10 +1,10 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cemvs1rnb2u64"]
 
-[ext_resource type="Texture2D" uid="uid://b55q5r5sxmtly" path="res://textures/shore_animated_texture.tres" id="1_dvre4"]
+[ext_resource type="Texture2D" uid="uid://btb53bx1vns47" path="res://imported_models/shore_shore_original_texture.png" id="1_6rsu0"]
 
 [resource]
 resource_name = "ShoreMaterial"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_dvre4")
+albedo_texture = ExtResource("1_6rsu0")
 roughness = 0.5

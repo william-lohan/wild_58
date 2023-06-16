@@ -1,0 +1,386 @@
+[gd_scene load_steps=26 format=3 uid="uid://tgly6i2c5u2r"]
+
+[ext_resource type="Texture2D" uid="uid://cgt5vl43a68jn" path="res://textures/transition_rain.png" id="1_6cjgb"]
+[ext_resource type="Script" path="res://scripts/SceneManager.cs" id="1_q3rcm"]
+[ext_resource type="Texture2D" uid="uid://ddh7cbmsy3mx1" path="res://textures/transition_shine.png" id="2_4yu1d"]
+[ext_resource type="Script" path="res://scripts/PauseMenu.cs" id="4_a1sc5"]
+[ext_resource type="Texture2D" uid="uid://8vj0qoproi4u" path="res://textures/music-solid.svg" id="4_kbefv"]
+[ext_resource type="Texture2D" uid="uid://b2427fgvq16qa" path="res://textures/explosion-solid.svg" id="5_uappe"]
+[ext_resource type="Texture2D" uid="uid://bd3e67ae021gu" path="res://textures/right-from-bracket-solid.svg" id="6_f2t71"]
+
+[sub_resource type="Gradient" id="Gradient_3cyc0"]
+
+[sub_resource type="Gradient" id="Gradient_ugvs3"]
+offsets = PackedFloat32Array(0, 0.997076)
+
+[sub_resource type="Animation" id="Animation_hxll3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/transition_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/mask:gradient")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_3cyc0")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../CanvasLayer2/TransitionGraphic2:material:shader_parameter/transition_time")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../CanvasLayer2/TransitionGraphic2:material:shader_parameter/mask:gradient")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_ugvs3")]
+}
+
+[sub_resource type="Gradient" id="Gradient_hx3ge"]
+
+[sub_resource type="Gradient" id="Gradient_3irln"]
+offsets = PackedFloat32Array(0, 0.997076)
+
+[sub_resource type="Animation" id="Animation_ql7px"]
+resource_name = "transition_fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/transition_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/mask:gradient")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_hx3ge")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../CanvasLayer2/TransitionGraphic2:material:shader_parameter/transition_time")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.0, -1.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../CanvasLayer2/TransitionGraphic2:material:shader_parameter/mask:gradient")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_3irln")]
+}
+
+[sub_resource type="Gradient" id="Gradient_57quf"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_laaxh"]
+offsets = PackedFloat32Array(0.00292397, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_yw1h5"]
+resource_name = "transition_fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/transition_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.0, -1.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/mask:gradient")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_57quf")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../CanvasLayer2/TransitionGraphic2:material:shader_parameter/transition_time")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../CanvasLayer2/TransitionGraphic2:material:shader_parameter/mask:gradient")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_laaxh")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_onk5f"]
+_data = {
+"RESET": SubResource("Animation_hxll3"),
+"transition_fade_in": SubResource("Animation_ql7px"),
+"transition_fade_out": SubResource("Animation_yw1h5")
+}
+
+[sub_resource type="Shader" id="Shader_mdce2"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.0.3.stable.mono's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D mask;
+uniform float transition_time;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	
+	vec2 mask_uv = UV + vec2(0, transition_time);
+	COLOR.a = texture(mask, mask_uv).r;
+}"
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xtcxw"]
+gradient = SubResource("Gradient_3cyc0")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67s72"]
+shader = SubResource("Shader_mdce2")
+shader_parameter/transition_time = -1.0
+shader_parameter/mask = SubResource("GradientTexture2D_xtcxw")
+
+[sub_resource type="Shader" id="Shader_1st1n"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.0.3.stable.mono's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D mask;
+uniform float transition_time;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	
+	vec2 mask_uv = UV + vec2(0, transition_time);
+	COLOR.a = texture(mask, mask_uv).r;
+}"
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lr34b"]
+gradient = SubResource("Gradient_ugvs3")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5dxqw"]
+shader = SubResource("Shader_1st1n")
+shader_parameter/transition_time = -1.0
+shader_parameter/mask = SubResource("GradientTexture2D_lr34b")
+
+[sub_resource type="Gradient" id="Gradient_uh0a5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.25098)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xd755"]
+gradient = SubResource("Gradient_uh0a5")
+
+[node name="SceneManager" type="Node" groups=["SceneManager"]]
+process_mode = 3
+script = ExtResource("1_q3rcm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CanvasLayer1/TransitionGraphic1")
+libraries = {
+"": SubResource("AnimationLibrary_onk5f")
+}
+
+[node name="CanvasLayer1" type="CanvasLayer" parent="."]
+
+[node name="TransitionGraphic1" type="TextureRect" parent="CanvasLayer1"]
+material = SubResource("ShaderMaterial_67s72")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+mouse_filter = 2
+texture = ExtResource("1_6cjgb")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="TransitionGraphic2" type="TextureRect" parent="CanvasLayer2"]
+material = SubResource("ShaderMaterial_5dxqw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+mouse_filter = 2
+texture = ExtResource("2_4yu1d")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="PauseMenu" type="Control" parent="." node_paths=PackedStringArray("musicSlider", "SFXSlider")]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 320.0
+offset_top = 68.0
+offset_right = -320.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(256, 256)
+script = ExtResource("4_a1sc5")
+musicSlider = NodePath("MarginContainer/VBoxContainer/GridContainer/MusicSlider")
+SFXSlider = NodePath("MarginContainer/VBoxContainer/GridContainer/SFXSlider")
+
+[node name="BackGround" type="TextureRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_xd755")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="GridContainer" type="GridContainer" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="MusicIcon" type="TextureRect" parent="PauseMenu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("4_kbefv")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="MusicSlider" type="HSlider" parent="PauseMenu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_bottom = NodePath("../SFXSlider")
+focus_next = NodePath("../SFXSlider")
+max_value = 1.0
+step = 0.1
+
+[node name="SFXIcon" type="TextureRect" parent="PauseMenu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("5_uappe")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="SFXSlider" type="HSlider" parent="PauseMenu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../MusicSlider")
+focus_neighbor_bottom = NodePath("../../MarginContainer/Button")
+focus_next = NodePath("../../MarginContainer/Button")
+focus_previous = NodePath("../MusicSlider")
+max_value = 1.0
+step = 0.1
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 16
+
+[node name="Button" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../GridContainer/SFXSlider")
+focus_previous = NodePath("../../GridContainer/SFXSlider")
+icon = ExtResource("6_f2t71")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="value_changed" from="PauseMenu/MarginContainer/VBoxContainer/GridContainer/MusicSlider" to="PauseMenu" method="OnMusicSliderChanged"]
+[connection signal="value_changed" from="PauseMenu/MarginContainer/VBoxContainer/GridContainer/SFXSlider" to="PauseMenu" method="OnSFXSliderChanged"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer/Button" to="PauseMenu" method="OnExitButtonPress"]

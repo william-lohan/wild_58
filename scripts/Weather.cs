@@ -21,6 +21,10 @@ public partial class Weather : Node3D
 
     private ProceduralSkyMaterial skyMaterial;
 
+    private AudioStreamPlayer RainSFX;
+
+    private AudioStreamPlayer ShineSFX;
+
     [Signal]
     public delegate void WeatherChangedEventHandler(bool isRaining);
 
@@ -28,6 +32,8 @@ public partial class Weather : Node3D
 	public override void _Ready()
 	{
         skyMaterial = worldEnvironment.Environment.Sky.SkyMaterial as ProceduralSkyMaterial;
+        RainSFX = GetNode<AudioStreamPlayer>("RainSFX");
+        ShineSFX = GetNode<AudioStreamPlayer>("ShineSFX");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,12 +56,18 @@ public partial class Weather : Node3D
     public void MakeRain()
     {
         isRaining = true;
+        ShineSFX.Stop();
+        if (!RainSFX.Playing)
+            RainSFX.Play();
         EmitSignal(SignalName.WeatherChanged, isRaining);
     }
 
     public void MakeShine()
     {
         isRaining = false;
+        RainSFX.Stop();
+        if (!ShineSFX.Playing)
+            ShineSFX.Play();
         EmitSignal(SignalName.WeatherChanged, isRaining);
     }
 }
