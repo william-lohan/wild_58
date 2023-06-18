@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://c7qnvndhxw4gf"]
+
+[ext_resource type="PackedScene" uid="uid://5kg581i8wp04" path="res://prefabs/weather_prefab.tscn" id="1_s4ahg"]
+[ext_resource type="PackedScene" uid="uid://jxhv5c0njn46" path="res://imported_models/end.glb" id="2_8myth"]
+[ext_resource type="Script" path="res://scripts/RotateY.cs" id="3_jnntc"]
+[ext_resource type="PackedScene" uid="uid://c567nn4qr6ttl" path="res://imported_models/demon.glb" id="4_6edtm"]
+[ext_resource type="Script" path="res://scripts/EndingDemon.cs" id="5_co871"]
+[ext_resource type="Texture2D" uid="uid://bd3e67ae021gu" path="res://textures/right-from-bracket-solid.svg" id="6_8dw4j"]
+[ext_resource type="Script" path="res://scripts/QuitButton.cs" id="7_2vrbi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nkwg2"]
+sky_top_color = Color(0, 0.74902, 1, 1)
+sky_horizon_color = Color(0.529412, 0.807843, 0.980392, 1)
+ground_bottom_color = Color(0.215686, 0.517647, 0.662745, 1)
+ground_horizon_color = Color(0.215686, 0.517647, 0.662745, 1)
+
+[sub_resource type="Sky" id="Sky_wl20g"]
+sky_material = SubResource("ProceduralSkyMaterial_nkwg2")
+
+[sub_resource type="Environment" id="Environment_co1yg"]
+background_mode = 2
+sky = SubResource("Sky_wl20g")
+ambient_light_source = 3
+
+[node name="End" type="Node3D"]
+
+[node name="Weather" parent="." instance=ExtResource("1_s4ahg")]
+script = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Weather"]
+environment = SubResource("Environment_co1yg")
+
+[node name="Sun" type="DirectionalLight3D" parent="Weather"]
+transform = Transform3D(0.917025, -5.1926e-07, 0.398829, -0.220488, 0.833288, 0.506967, -0.33234, -0.552839, 0.764146, 0, 0, 0)
+directional_shadow_mode = 0
+
+[node name="end" parent="." instance=ExtResource("2_8myth")]
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.9373, 0)
+script = ExtResource("3_jnntc")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.972325, 0.233632, 0, -0.233632, 0.972325, 0, 11.3192, 7.78345)
+fov = 45.0
+
+[node name="demon" parent="." instance=ExtResource("4_6edtm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.9906, 0)
+script = ExtResource("5_co871")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+icon = ExtResource("6_8dw4j")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("7_2vrbi")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="MarginContainer/VBoxContainer/QuitButton" method="OnPressed"]

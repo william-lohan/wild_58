@@ -78,7 +78,15 @@ public partial class Player : CharacterBody3D
         shineCount++;
     }
 
-    internal void EndLevel()
+    public void DeathBoundsHit(Node3D node)
+    {
+        if (node == this)
+        {
+            GlobalPosition = Vector3.Zero;
+        }
+    }
+
+    public void EndLevel()
     {
         ProcessMode = ProcessModeEnum.Disabled;
     }

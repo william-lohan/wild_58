@@ -11,6 +11,7 @@ public partial class SceneManager : Node
         "res://scenes/shore.tscn",
         "res://scenes/jungle.tscn",
         "res://scenes/temple.tscn",
+        "res://scenes/end.tscn",
     };
 
     private AnimationPlayer animationPlayer;

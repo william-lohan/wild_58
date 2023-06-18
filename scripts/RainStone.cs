@@ -76,10 +76,11 @@ public partial class RainStone : Area3D
         }
     }
 
-    private void ResetStone()
+    private void ResetStone(Node3D node)
     {
         originalStone.Visible = true;
-        brokenStone.Visible = false;
+        if (brokenStone != null)
+            brokenStone.Visible = false;
         SetCollisionMaskValue(2, true);
     }
 

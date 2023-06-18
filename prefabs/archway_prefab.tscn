@@ -100,4 +100,5 @@ libraries = {
 }
 
 [node name="OpenSFX" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 stream = ExtResource("3_2bsmo")
